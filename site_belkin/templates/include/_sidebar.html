@@ -1,0 +1,37 @@
+<!--{% load news_tags %} &lt;!&ndash; Импортируем папку templatestags с кастомными тегамИ &ndash;&gt;-->
+
+<!--<h1> для шаблона _content_view_news.html-->
+{% if news_item.title %}
+<h1>{{ news_item.category.title }}</h1>
+{% endif  %}
+<!-- КОНЕЦ -->
+
+<!--<h1> для шаблона category.html -->
+{% if category.title %}
+<h1>{{ category.title }}</h1>
+{% else %}
+<h1>{{ title_category }}</h1>
+{% endif  %}
+<!-- КОНЕЦ -->
+
+<!-- Способ @register.inclusion_tag  -->
+{% show_categories %} <!-- Берем из шаблона list_categories.html -->
+<!-- КОНЕЦ -->
+
+
+
+
+
+
+
+
+
+{% comment %}
+<!--&lt;!&ndash; Способ @register.simple_tag() &ndash;&gt;-->
+<!--<div class="list-group">-->
+<!--        {% get_categories as categories %} &lt;!&ndash; Присваеваем полученые данные из кастомного тега в переменную categories &ndash;&gt;-->
+<!--        {% for item in categories %}-->
+<!--        <a href="{% url 'category' item.id %}" class="list-group-item list-group-item-action">{{ item.title }}</a>-->
+<!--        {% endfor %}-->
+<!--</div>-->
+{% endcomment %}
