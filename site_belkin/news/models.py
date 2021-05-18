@@ -14,7 +14,7 @@ class News(models.Model):
 
     def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута'
         # (фаил urls.pu | name='view_news')
-        return reverse_lazy('view_news', kwargs={'news_id': self.pk})
+        return reverse_lazy('view_news', kwargs={'pk': self.pk})
 
     def __str__(self):  # Возвращаем строковое значение title
         return self.title

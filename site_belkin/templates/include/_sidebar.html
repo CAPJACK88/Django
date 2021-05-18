@@ -1,17 +1,17 @@
 <!--{% load news_tags %} &lt;!&ndash; Импортируем папку templatestags с кастомными тегамИ &ndash;&gt;-->
 
 <!--<h1> для шаблона _content_view_news.html-->
-{% if news_item.title %}
-<h1>{{ news_item.category.title }}</h1>
-{% endif  %}
+{#{% if news_item.title %}#}
+{#<h1>{{ news_item.category.title }}</h1>#}
+{#{% endif  %}#}
 <!-- КОНЕЦ -->
 
 <!--<h1> для шаблона category.html -->
-{% if category.title %}
-<h1>{{ category.title }}</h1>
-{% else %}
-<h1>{{ title_category }}</h1>
-{% endif  %}
+{#{% if category.title %}#}
+{#<h1>{{ category.title }}</h1>#}
+{#{% else %}#}
+{#<h1>{{ title_category }}</h1>#}
+{#{% endif  %}#}
 <!-- КОНЕЦ -->
 
 <!-- Способ @register.inclusion_tag  -->

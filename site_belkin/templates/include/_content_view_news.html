@@ -1,5 +1,5 @@
 
-<h1>{{ news_item.title }}</h1>
+{#<h1>{{ news_item.title }}</h1>#}
 
 <div class="card mb-5">
     <div class="card-header">
@@ -17,7 +17,7 @@
 
     </div>
     <div class="card-body">
-        <div class="media">
+        <div class="media mb-5">
             {% if news_item.photo %}
             <img src="{{ news_item.photo.url }}" alt="Фото новости" width="300" height="200">
             {% else %}

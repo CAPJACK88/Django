@@ -1,6 +1,9 @@
-<div class="list-group">
+<div class="list-group mb-5">
         {% for item in categories %}
-        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+        <a href="{{ item.get_absolute_url }}" class="list-group-item list-group-item-action">{{ item.title }}
+            <span class="badge bg-primary rounded-pill m-2">{{ categories.count }}</span>
+        </a>
+
         {% endfor %}
 </div>
 

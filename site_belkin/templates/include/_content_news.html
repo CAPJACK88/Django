@@ -1,8 +1,8 @@
-<h1>{{ title_news }}</h1>
+{#<h1>{{ title_news }}</h1>#}
 
 {% for item in news %}
 
-    {% if item.is_published %}
+{#    {% if item.is_published %}#}
 
         <div class="card mb-5">
 
@@ -22,7 +22,7 @@
             </div>
 
             <div class="card-body">
-                <div class="media">
+                <div class="media mb-3">
                     {% if item.photo %}
                     <img src="{{ item.photo.url }}" alt="Фото новости" width="300" height="200">
                     {% else %}
@@ -40,6 +40,6 @@
 
         </div>
 
-    {% endif %}
+{#    {% endif %}#}
 
 {% endfor %}
