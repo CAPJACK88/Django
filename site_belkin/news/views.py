@@ -23,7 +23,8 @@ class NewsByCategory(ListView):
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
     allow_empty = False  # Заперщаем показ пустых списков (страниц)
-
+    # queryset = News.objects.select_related('category') - оптимизатор SQL запроса
+    #
     def get_queryset(self):  # Отображаем только опубликованные новости и новости соответствующей категории
         return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category') # .select_related('category') - оптимизатор SQL запроса
 
