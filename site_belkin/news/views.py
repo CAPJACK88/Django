@@ -25,7 +25,7 @@ class NewsByCategory(ListView):
     allow_empty = False  # Заперщаем показ пустых списков (страниц)
 
     def get_queryset(self):  # Отображаем только опубликованные новости и новости соответствующей категории
-        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category')
+        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category') # .select_related('category') - оптимизатор SQL запроса
 
 
 class ViewNews(DetailView):
