@@ -15,7 +15,7 @@ class HomeNews(ListView):
         return context
 
     def get_queryset(self):  # Отображаем только опубликованные новости
-        return News.objects.filter(is_published=True)
+        return News.objects.filter(is_published=True).select_related('category')
 
 
 class NewsByCategory(ListView):
@@ -25,7 +25,7 @@ class NewsByCategory(ListView):
     allow_empty = False  # Заперщаем показ пустых списков (страниц)
 
     def get_queryset(self):  # Отображаем только опубликованные новости и новости соответствующей категории
-        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True)
+        return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True).select_related('category')
 
 
 class ViewNews(DetailView):
@@ -38,12 +38,6 @@ class ViewNews(DetailView):
 class CreateNews(CreateView):
     form_class = NewsForm
     template_name = 'news/add-news.html'
-
-
-
-
-
-
 
 # def index(request):  # Рендер шаблона Индекс
 #     news = News.objects.all()  # Импортируем объекты из db News

@@ -11,6 +11,7 @@ class News(models.Model):
     is_published = models.BooleanField(default=False, verbose_name='Опубликовоно')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True,
                                  verbose_name='Категории')  # Связываем модель с подклассом
+    views = models.IntegerField(default=0)
 
     def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута'
         # (фаил urls.pu | name='view_news')
