@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import News, Category
 from .forms import NewsForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class HomeNews(ListView):
+class HomeNews(LoginRequiredMixin, ListView):
+    login_url = '/admin/'
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -18,7 +20,8 @@ class HomeNews(ListView):
         return News.objects.filter(is_published=True).select_related('category')
 
 
-class NewsByCategory(ListView):
+class NewsByCategory(LoginRequiredMixin, ListView):
+    login_url = '/admin/'
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -31,14 +34,16 @@ class NewsByCategory(ListView):
             'category')  # .select_related('category') - оптимизатор SQL запроса
 
 
-class ViewNews(DetailView):
+class ViewNews(LoginRequiredMixin, DetailView):
+    login_url = '/admin/'
     model = News
     # pk_url_kwarg = 'news_id'
     # template_name = 'news/news_detail.html'
     context_object_name = 'news_item'
 
 
-class CreateNews(CreateView):
+class CreateNews(LoginRequiredMixin, CreateView):
+    login_url = '/admin/'
     form_class = NewsForm
     template_name = 'news/add-news.html'
 
