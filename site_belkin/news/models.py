@@ -9,12 +9,10 @@ class News(models.Model):
     update_at = models.DateTimeField(auto_now_add=True, verbose_name='Дада обновления')
     photo = models.ImageField(upload_to='photos/%y/%m/%d/', blank=True, verbose_name='Фото')
     is_published = models.BooleanField(default=False, verbose_name='Опубликовоно')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True,
-                                 verbose_name='Категории')  # Связываем модель с подклассом
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категории')  # Связываем модель с подклассом
     views = models.IntegerField(default=0)
 
-    def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута'
-        # (фаил urls.pu | name='view_news')
+    def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута' (фаил urls.pu | name='view_news')
         return reverse_lazy('view_news', kwargs={'pk': self.pk})
 
     def __str__(self):  # Возвращаем строковое значение title
@@ -29,8 +27,7 @@ class News(models.Model):
 class Category(models.Model):  # Объявляем КЛАСС
     title = models.CharField(max_length=150, verbose_name='Наименование')
 
-    def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута'
-        # (фаил urls.pu | name='category')
+    def get_absolute_url(self):  # Метод для построения маршрута ссылки (первый аргумент 'название маршрута' (фаил urls.pu | name='category')
         return reverse_lazy('category', kwargs={'category_id': self.pk})
 
     def __str__(self):  # Возвращаем строковое значение title
