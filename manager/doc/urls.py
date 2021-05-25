@@ -3,5 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('', plug, name='plug'),
-    path('doc/', docList.as_view(), name='doc'),
+    path('doc/', DocList.as_view(), name='doc'),
 ]

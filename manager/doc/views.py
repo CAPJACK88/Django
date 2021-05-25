@@ -8,13 +8,7 @@ def plug(request):
     return HttpResponse('Заглущка / plug')
 
 
-# def doc(request):
-#     doc = Document.objects.all()
-#
-#     return HttpResponse('Hello World')
-
-
-class docList(ListView):
+class DocList(ListView):
     model = Document
     template_name = 'doc/docList.html'
     context_object_name = 'doc'
