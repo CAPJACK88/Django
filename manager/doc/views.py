@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import *
 
 
-def UserLogin(request):
+def user_login(request):
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -18,19 +18,32 @@ def UserLogin(request):
     return render(request, template_name='doc/login_user.html', context={"form": form})
 
 
+def user_logout(request):
+    logout(request)
+    return redirect('user_login')
+
+
 class DocList(LoginRequiredMixin, ListView):
     model = Document
     template_name = 'doc/doc_list.html'
-    context_object_name = 'DocList'
+    context_object_name = 'doc'
     allow_empty = False
+    queryset = Document.objects.select_related('Category')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_queryset(self):
+        return Document.objects.filter(publications=True)
 
 
 class CategoryList(LoginRequiredMixin, ListView):
-    model = Category
+    model = Document
     template_name = 'doc/doc_list.html'
-    context_object_name = 'CategoryList'
+    context_object_name = 'doc'
     allow_empty = False
+    queryset = Document.objects.select_related('Category')
 
     def get_queryset(self):
-        return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True).select_related(
-            'category')
+        return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True)

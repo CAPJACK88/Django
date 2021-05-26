@@ -1,20 +1,35 @@
 {% block title %}
-    <title>Вход в менеджер</title>
+    <title>MANAGECOMPANY_AGAT</title>
 {% endblock %}
 {% include 'include/_header.html' %}
 {% spaceless %}
     {% load static %}
-    <body class="text-center">
-    <main class="form-signin">
-        <form method="post">
-            {% csrf_token %}
+    {% if request.user.is_authenticated %}
+        <body class="text-center">
+        <main class="form-signin">
             <div class="form-floating">
-            <img class="mb-4" src="{% static 'svg/logo_agat_mini.svg' %}" alt="" width="72" height="57">
-            {{ form.as_p }}
+                <img class="mb-5" src="{% static 'svg/logo_agat_mini.svg' %}" alt="" width="72" height="57">
             </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Вход</button>
+            <span class="mt-5">Вы авторизованы как: <b class="badge bg-info text-dark">{{ user.username }}</b></span>
+            <a class="btn btn-success m-3" href="{% url 'DocList' %}" role="button">На главную</a>
+            <a class="btn btn-dark m-5" href="{% url 'logout' %}" role="button">Выход</a>
             <p class="mt-5 mb-3 text-muted">© 2010 - 2021</p>
-        </form>
-    </main>
-    </body>
+        </main>
+        </body>
+    {% else %}
+        <body class="text-center">
+        <main class="form-signin">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-floating">
+                    <img class="mb-4" src="{% static 'svg/logo_agat_mini.svg' %}" alt="" width="72" height="57">
+                    {{ form.non_field.errors }}
+                    {{ form.as_p }}
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Вход</button>
+                <p class="mt-5 mb-3 text-muted">© 2010 - 2021</p>
+            </form>
+        </main>
+        </body>
+    {% endif %}
 {% endspaceless %}

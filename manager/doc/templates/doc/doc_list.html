@@ -6,7 +6,7 @@
     <div class="container mt-3">
     {% include 'include/_category_List.html' %}
             <div class="col-md-9">
-                {% for item_document in DocList %}
+                {% for item_document in doc %}
                     <div class="card mb-5">
                         <div class="card-header">
                             {{ item_document.category.title }}
@@ -14,10 +14,10 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ item_document.title }}</h5>
                             <p class="card-text">{{ item_document.description }}</p>
-                            <a href="{{ item_document.document }}" class="btn btn-primary">Go somewhere</a>
+                            <a href="{{ item_document.document.url }}" class="btn btn-primary" target="_blank">Go somewhere</a>
                         </div>
                         <div class="card-footer text-muted">
-                            {{ item_document.date_update }}
+                            {{ item_document.date_update|date:"d.m.Y" }}
                         </div>
                     </div>
                 {% endfor %}

@@ -7,5 +7,7 @@ from django.contrib.auth.models import User
 
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(label=False, widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'login', 'placeholder': 'login'}))
-    password = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'Password'}))
+    username = forms.CharField(label=False, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'type': 'login', 'placeholder': 'ЛОГИН'}))
+    password = forms.CharField(label=False, widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password', 'placeholder': 'ПАРОЛЬ'}))

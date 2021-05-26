@@ -40,7 +40,6 @@ def user_logout(request):
 
 
 class HomeNews(ListView):
-    login_url = '/admin/'
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -70,16 +69,14 @@ class NewsByCategory(LoginRequiredMixin, ListView):
             'category')  # .select_related('category') - оптимизатор SQL запроса
 
 
-class ViewNews(LoginRequiredMixin, DetailView):
-    login_url = '/admin/'
+class ViewNews(DetailView):
     model = News
     # pk_url_kwarg = 'news_id'
     # template_name = 'news/news_detail.html'
     context_object_name = 'news_item'
 
 
-class CreateNews(LoginRequiredMixin, CreateView):
-    login_url = '/admin/'
+class CreateNews(CreateView):
     form_class = NewsForm
     template_name = 'news/add-news.html'
 
