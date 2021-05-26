@@ -2,6 +2,7 @@
     <title>MANAGECOMPANY_AGAT</title>
 {% endblock %}
 {% include 'include/_header.html' %}
+
 {% spaceless %}
     {% load static %}
     {% if request.user.is_authenticated %}
@@ -33,3 +34,5 @@
         </body>
     {% endif %}
 {% endspaceless %}
+
+
