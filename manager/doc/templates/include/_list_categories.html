@@ -1,0 +1,9 @@
+<div class="row">
+    <div class="col-3">
+        {% for item_category in categories %}
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+               href="{{ item_category.get_absolute_url }}" role="tab" aria-controls="list-profile">{{ item_category.title }}</a>
+        </div>
+        {% endfor %}
+    </div>
