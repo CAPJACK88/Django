@@ -4,7 +4,6 @@ from django.contrib.auth import login, logout
 from .forms import UserLoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import *
-import json
 
 
 def user_login(request):
