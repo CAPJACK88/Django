@@ -11,7 +11,7 @@ class DocAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     list_editable = ('publications',)
     fields = ('title', 'description', 'document', 'category', 'date_creation', 'date_update', 'username', 'publications',)
-    readonly_fields = ('date_creation', 'date_update', 'username',)
+    readonly_fields = ('date_creation', 'date_update',)
     save_on_top = True
 
 

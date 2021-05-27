@@ -2,3 +2,39 @@
     color: #ba2121;
     list-style-type: none;
 }
+
+.bd-callout+.bd-callout {
+    margin-top: -.25rem;
+}
+
+/*.bd-callout-danger {*/
+/*    border-left-color: #5bc0de;*/
+/*}*/
+
+.bd-callout {
+    background-color: white;
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-left-color: #5bc0de;
+    border-radius: .25rem;
+}
+
+.doc_save {
+    color: white;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: #5bc0de;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}

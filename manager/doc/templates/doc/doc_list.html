@@ -1,27 +1,28 @@
+{% load static %}
 {% block title %}
     <title>Документы</title>
 {% endblock %}
 {% include 'include/_header.html' %}
-{% spaceless %}
-    <div class="container mt-3">
+{% include 'include/_navbar.html' %}
+
+<div class="container mt-5">
     {% include 'include/_category_List.html' %}
-            <div class="col-md-9">
-                {% for item_document in doc %}
-                    <div class="card mb-5">
-                        <div class="card-header">
-                            {{ item_document.category.title }}
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item_document.title }}</h5>
-                            <p class="card-text">{{ item_document.description }}</p>
-                            <a href="{{ item_document.document.url }}" class="btn btn-primary" target="_blank">Go somewhere</a>
-                        </div>
-                        <div class="card-footer text-muted">
-                            {{ item_document.date_update|date:"d.m.Y" }}
-                        </div>
-                    </div>
-                {% endfor %}
+    <div class="col-md-9">
+        {% for item_document in doc %}
+            <div class="bd-callout bd-callout-danger">
+                <code class="mb-3">{{ item_document.category.title }}</code>
+                <details class="mb-3">
+                    <summary>{{ item_document.title }}</summary>
+                    <p>{{ item_document.description }}</p>
+                </details>
+                <kbd><a class="doc_save" href="{{ item_document.document.url }}" target="_blank">Открыть</a></kbd>
+                {#                <a href="{{ item_document.document.url }}" class="btn btn-outline-success" target="_blank">Открыть</a>#}
             </div>
-        </div>
+        {% endfor %}
+    {% include 'include/_pagination.html' %}
     </div>
-{% endspaceless %}
+
+{#    <script>#}
+{#        const data = '{{ qs_json }}'#}
+{#        console.log(data)#}
+{#    </script>#}

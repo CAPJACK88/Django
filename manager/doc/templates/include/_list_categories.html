@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-3">
+    <div class="col-md-3 mb-5">
         {% for item_category in categories %}
-        <div class="list-group" id="list-tab" role="tablist">
-            <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
-               href="{{ item_category.get_absolute_url }}" role="tab" aria-controls="list-profile">{{ item_category.title }}</a>
-        </div>
+            <a href="{{ item_category.get_absolute_url }}"
+               class="list-group-item list-group-item-action">{{ item_category.title }}
+                <span class="badge bg-info m-2">{{ item_category.cnt }}</span>
+            </a>
         {% endfor %}
     </div>

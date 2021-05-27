@@ -54,8 +54,8 @@ class HomeNews(ListView):
         return News.objects.filter(is_published=True).select_related('category')
 
 
-class NewsByCategory(LoginRequiredMixin, ListView):
-    login_url = '/admin/'
+class NewsByCategory(ListView):
+    # login_url = '/admin/'
     model = News
     template_name = 'news/home_news_list.html'
     context_object_name = 'news'
@@ -71,9 +71,9 @@ class NewsByCategory(LoginRequiredMixin, ListView):
 
 class ViewNews(DetailView):
     model = News
+    context_object_name = 'news_item'
     # pk_url_kwarg = 'news_id'
     # template_name = 'news/news_detail.html'
-    context_object_name = 'news_item'
 
 
 class CreateNews(CreateView):
@@ -81,6 +81,29 @@ class CreateNews(CreateView):
     template_name = 'news/add-news.html'
 
     # queryset = News.objects.select_related('category') не работает
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # def index(request):  # Рендер шаблона Индекс
 #     news = News.objects.all()  # Импортируем объекты из db News
