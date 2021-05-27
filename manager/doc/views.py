@@ -34,7 +34,6 @@ class DocList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['qs_json'] = json.dumps(list(Document.objects.values()))
         return context
 
     def get_queryset(self):
@@ -52,11 +51,18 @@ class CategoryList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True)
 
-# def index(request):
-# search_query = self.request.GET.get('search')
-#         # if search_query:
-#         #     posts = Document.objects.filter(title__icontains=search_query)
-#         #     context['posts'] = posts
-#         # else:
-#         #     posts = Document.objects.all()
-#         #     context['posts'] = posts
+
+class Search(ListView):
+    model = Document
+    template_name = 'doc/doc_list.html'
+    context_object_name = 'doc'
+
+    paginate_by = 2
+
+    def get_queryset(self):
+        return Document.objects.filter(title__icontains=self.request.GET.get('search'))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['search'] = f"search={self.request.GET.get('search')}&"
+        return context
