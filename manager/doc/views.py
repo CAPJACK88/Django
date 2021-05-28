@@ -59,7 +59,7 @@ class SearchTitle(ListView):
 
     paginate_by = 10
 
-    def get_queryset(self):  # новый
+    def get_queryset(self):
         query = self.request.GET.get('search')
         object_list = Document.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
         return object_list
