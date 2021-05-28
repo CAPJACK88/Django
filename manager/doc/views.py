@@ -52,7 +52,7 @@ class CategoryList(LoginRequiredMixin, ListView):
         return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True)
 
 
-class SearchTitle(ListView):
+class Search(ListView):
     model = Document
     template_name = 'doc/doc_list.html'
     context_object_name = 'doc'
