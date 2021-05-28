@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth import login, logout
@@ -29,7 +30,7 @@ class DocList(LoginRequiredMixin, ListView):
     context_object_name = 'doc'
     allow_empty = False
     queryset = Document.objects.select_related('Category')
-    paginate_by = 3
+    paginate_by = 10
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,21 +46,23 @@ class CategoryList(LoginRequiredMixin, ListView):
     context_object_name = 'doc'
     allow_empty = False
     queryset = Document.objects.select_related('Category')
-    paginate_by = 3
+    paginate_by = 10
 
     def get_queryset(self):
         return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True)
 
 
-class Search(ListView):
+class SearchTitle(ListView):
     model = Document
     template_name = 'doc/doc_list.html'
     context_object_name = 'doc'
 
-    paginate_by = 2
+    paginate_by = 10
 
-    def get_queryset(self):
-        return Document.objects.filter(title__icontains=self.request.GET.get('search'))
+    def get_queryset(self):  # новый
+        query = self.request.GET.get('search')
+        object_list = Document.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        return object_list
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)

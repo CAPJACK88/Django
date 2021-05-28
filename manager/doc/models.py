@@ -13,7 +13,7 @@ class Document(models.Model):
     username = models.ForeignKey('User', on_delete=models.PROTECT, null=True, verbose_name='Имя')
 
     def get_absolute_url(self):
-        return reverse_lazy('DocList', kwargs={'pk': self.pk})
+        return reverse_lazy('DocList', kwargs={'document.url': self.document.url})
 
     def __str__(self):
         return self.title
