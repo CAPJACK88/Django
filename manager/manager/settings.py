@@ -10,6 +10,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    'dal',
+    'dal_select2',
+    'dal_queryset_sequence',
+    # 'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -18,8 +22,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'doc.apps.DocConfig',
     'cont.apps.ContConfig',
+    'user.apps.UserConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [

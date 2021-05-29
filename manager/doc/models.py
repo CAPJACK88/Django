@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse_lazy
+from user.models import User, Position
 
 
 class Document(models.Model):
@@ -10,7 +11,7 @@ class Document(models.Model):
     document = models.FileField(upload_to='files/%Y/%m/%d/', verbose_name='Документ')
     publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
-    username = models.ForeignKey('User', on_delete=models.PROTECT, null=True, verbose_name='Имя')
+    username = models.ForeignKey('user.User', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Имя')
 
     def get_absolute_url(self):
         return reverse_lazy('DocList', kwargs={'document.url': self.document.url})
@@ -37,18 +38,4 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
-        ordering = ['id']
-
-
-class User(models.Model):
-    username = models.CharField(max_length=500, unique=True, verbose_name='Название')
-    description = models.TextField(max_length=1000, blank=True, verbose_name='Описание')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, verbose_name='Фото')
-
-    def __str__(self):
-        return self.username
-
-    class Meta:
-        verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользователи'
         ordering = ['id']

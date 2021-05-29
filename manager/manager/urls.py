@@ -8,6 +8,7 @@ urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('doc.urls')),
     path('', include('cont.urls')),
+    path('', include('user.urls')),
 ]
 
 if settings.DEBUG:
