@@ -7,16 +7,18 @@
 <div class="container mt-5">
     {% include 'include/_category_List.html' %}
     <div class="col-md-9">
-        {% for item_document in doc %}
-            <div class="bd-callout bd-callout-danger">
-                <code class="mb-3">{{ item_document.category.title }}</code>
-                <details class="mb-3">
-                    <summary>{{ item_document.title }}</summary>
-                    <p>{{ item_document.description }}</p>
-                </details>
-                <kbd><a class="doc_save" href="{{ item_document.document.url }}" target="_blank">Открыть</a></kbd>
-            </div>
-        {% endfor %}
+        {% autoescape off %}
+            {% for item_document in doc %}
+                <div class="bd-callout bd-callout-danger">
+                    <code class="mb-3">{{ item_document.category.title }}</code>
+                    <details class="mb-3">
+                        <summary>{{ item_document.title }}</summary>
+                        <p>{{ item_document.description }}</p>
+                    </details>
+                    <kbd><a class="doc_save" href="{{ item_document.document.url }}" target="_blank">Открыть</a></kbd>
+                </div>
+            {% endfor %}
+        {% endautoescape %}
         {% include 'include/_pagination.html' %}
     </div>
 {% include 'include/_footer.html' %}

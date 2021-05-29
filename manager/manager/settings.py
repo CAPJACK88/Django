@@ -17,6 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'doc.apps.DocConfig',
+    'cont.apps.ContConfig',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -54,10 +57,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
         # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'manager',
-        # 'USER': 'root',
-        # 'PASSWORD': 'root',
-        # 'HOST': 'localhost',
+        # 'NAME': 'ci55088_doc',
+        # 'USER': 'ci55088_doc',
+        # 'PASSWORD': '6FD3XJsX',
+        # 'HOST': 'ci55088-django-2.tw1.ru',
     }
 }
 
@@ -92,5 +95,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'manager/static')]
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload')
+
+CKEDITOR_UPLOAD_PATH = "/uploads/"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

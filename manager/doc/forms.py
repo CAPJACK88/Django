@@ -1,9 +1,5 @@
 from django import forms
-from .models import Document, Category, User
-import re
-from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class UserLoginForm(AuthenticationForm):

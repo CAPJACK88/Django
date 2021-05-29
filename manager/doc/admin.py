@@ -1,7 +1,17 @@
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django import forms
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 
+from django.utils.safestring import mark_safe
 from .models import Document, Category, User
+
+
+class DocumentAdminForm(forms.ModelForm):
+    description = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Document
+        fields = '__all__'
 
 
 class DocAdmin(admin.ModelAdmin):
@@ -10,9 +20,11 @@ class DocAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description',)
     list_filter = ('category',)
     list_editable = ('publications',)
-    fields = ('title', 'description', 'document', 'category', 'date_creation', 'date_update', 'username', 'publications',)
+    fields = (
+        'title', 'description', 'document', 'category', 'date_creation', 'date_update', 'username', 'publications',)
     readonly_fields = ('date_creation', 'date_update',)
     save_on_top = True
+    form = DocumentAdminForm
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -35,6 +47,7 @@ class UserAdmin(admin.ModelAdmin):
             return mark_safe(f'<img src="{obj.photo.url}" width="75">')
         else:
             return 'Нет фото'
+
     get_photo.short_description = 'Миниатюра'
 
 
