@@ -7,8 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('doc.urls')),
-    path('', include('cont.urls')),
-    path('', include('user.urls')),
+    path('searchtag/', include('search.urls'))
 ]
 
 if settings.DEBUG:

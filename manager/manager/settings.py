@@ -14,18 +14,24 @@ INSTALLED_APPS = [
     'dal_select2',
     'dal_queryset_sequence',
     # 'grappelli',
+    'ckeditor',
+    'ckeditor_uploader',
+    'phonenumber_field',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'doc.apps.DocConfig',
     'cont.apps.ContConfig',
     'user.apps.UserConfig',
-    'ckeditor',
-    'ckeditor_uploader',
-    'phonenumber_field',
+    'score.apps.ScoreConfig',
+    'contract.apps.ContractConfig',
+    'search.apps.SearchConfig',
+
 ]
 
 MIDDLEWARE = [

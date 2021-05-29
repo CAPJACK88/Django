@@ -2,6 +2,7 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from django.contrib import admin
 from .models import Document, Category
+from user.models import User
 
 
 class DocumentAdminForm(forms.ModelForm):
@@ -18,9 +19,8 @@ class DocAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description',)
     list_filter = ('category',)
     list_editable = ('publications',)
-    fields = (
-        'title', 'description', 'document', 'category', 'date_creation', 'date_update', 'surname', 'publications',)
-    readonly_fields = ('date_creation', 'date_update',)
+    fields = ('id', 'title', 'description', 'document', 'category', 'date_creation', 'date_update', 'publications',)
+    readonly_fields = ('id', 'date_creation', 'date_update',)
     save_on_top = True
     form = DocumentAdminForm
 
@@ -35,5 +35,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Document, DocAdmin)
 admin.site.register(Category, CategoryAdmin)
 
-admin.site.site_title = 'Уапавление документами'
-admin.site.site_header = 'Уапавление документами'
+admin.site.site_title = 'Уапавление'
+admin.site.site_header = 'Уапавление'
