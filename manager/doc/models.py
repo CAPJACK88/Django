@@ -11,7 +11,7 @@ class Document(models.Model):
     document = models.FileField(upload_to='files/%Y/%m/%d/', verbose_name='Документ')
     publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
-    username = models.ForeignKey('user.User', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Имя')
+    username = models.ManyToManyField('user.User', blank=True, verbose_name='Имя')
 
     def get_absolute_url(self):
         return reverse_lazy('DocList', kwargs={'document.url': self.document.url})

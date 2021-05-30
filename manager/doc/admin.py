@@ -2,7 +2,6 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from django.contrib import admin
 from .models import Document, Category
-from user.models import User
 
 
 class DocumentAdminForm(forms.ModelForm):
@@ -21,6 +20,7 @@ class DocAdmin(admin.ModelAdmin):
     list_editable = ('publications',)
     fields = ('id', 'title', 'description', 'document', 'category', 'date_creation', 'date_update', 'publications',)
     readonly_fields = ('id', 'date_creation', 'date_update',)
+    filter_horizontal = ('username',)
     save_on_top = True
     form = DocumentAdminForm
 
