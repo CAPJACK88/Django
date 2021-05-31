@@ -1,15 +1,15 @@
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+# from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from django.contrib import admin
 from .models import Document, Category
 
 
-class DocumentAdminForm(forms.ModelForm):
-    description = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
-
-    class Meta:
-        model = Document
-        fields = '__all__'
+# class DocumentAdminForm(forms.ModelForm):
+#     description = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
+#
+#     class Meta:
+#         model = Document
+#         fields = '__all__'
 
 
 class DocAdmin(admin.ModelAdmin):
@@ -22,7 +22,7 @@ class DocAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'date_creation', 'date_update',)
     filter_horizontal = ('username',)
     save_on_top = True
-    form = DocumentAdminForm
+    # form = DocumentAdminForm
 
 
 class CategoryAdmin(admin.ModelAdmin):

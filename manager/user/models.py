@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class User(models.Model):
@@ -20,7 +21,7 @@ class User(models.Model):
 
 class Position(models.Model):
     position = models.CharField(max_length=500, unique=True, verbose_name='Должность')
-    description = models.TextField(max_length=1000, blank=True, verbose_name='Описание')
+    description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
 
     def __str__(self):
         return self.position

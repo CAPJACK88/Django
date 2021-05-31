@@ -1,6 +1,7 @@
 from django.db import models
 from cont.models import Company
 from user.models import User
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Contract(models.Model):
@@ -9,7 +10,7 @@ class Contract(models.Model):
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Закреплено')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    comment = models.TextField(max_length=500, blank=True, verbose_name='Комментарий')
+    comment = CKEditor5Field(max_length=500, blank=True, verbose_name='Комментарий')
     publications = models.BooleanField(default=True, verbose_name='Опубликовоно')
 
     def __str__(self):

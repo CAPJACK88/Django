@@ -1,6 +1,7 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from user.models import User, Position
+from django_ckeditor_5.fields import CKEditor5Field
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Contact(models.Model):
@@ -17,7 +18,7 @@ class Contact(models.Model):
     position = models.ManyToManyField('user.Position', blank=True, verbose_name='Должность')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    comment = models.TextField(max_length=500, blank=True, verbose_name='Комментарий')
+    comment = CKEditor5Field(max_length=500, blank=True, verbose_name='Комментарий')
     publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
 
     def __str__(self):
@@ -43,7 +44,7 @@ class Company(models.Model):
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Закреплено')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    comment = models.TextField(max_length=500, blank=True, verbose_name='Комментарий')
+    comment = CKEditor5Field(max_length=500, blank=True, verbose_name='Комментарий')
     publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
 
     def __str__(self):

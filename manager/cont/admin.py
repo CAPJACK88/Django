@@ -1,16 +1,16 @@
 from django.contrib import admin
-from django import forms
+# from django import forms
 from .models import Contact, Company
 from django.utils.safestring import mark_safe
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
-
-
-class ContactAdminForm(forms.ModelForm):
-    comment = forms.CharField(label='Комментарий', widget=CKEditorUploadingWidget())
-
-    class Meta:
-        model = Contact
-        fields = '__all__'
+# from ckeditor_uploader.widgets import CKEditorUploadingWidget
+#
+#
+# class ContactAdminForm(forms.ModelForm):
+#     comment = forms.CharField(label='Комментарий', widget=CKEditorUploadingWidget())
+#
+#     class Meta:
+#         model = Contact
+#         fields = '__all__'
 
 
 class ContactAdmin(admin.ModelAdmin):
@@ -25,7 +25,7 @@ class ContactAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'date_creation', 'date_update', 'get_photo',)
     filter_horizontal = ('company', 'position',)
     save_on_top = True
-    form = ContactAdminForm
+    # form = ContactAdminForm
 
     def get_photo(self, obj):
         if obj.photo:
@@ -36,12 +36,12 @@ class ContactAdmin(admin.ModelAdmin):
     get_photo.short_description = 'Миниатюра'
 
 
-class CompanyAdminForm(forms.ModelForm):
-    comment = forms.CharField(label='Комментарий', widget=CKEditorUploadingWidget())
-
-    class Meta:
-        model = Company
-        fields = '__all__'
+# class CompanyAdminForm(forms.ModelForm):
+#     comment = forms.CharField(label='Комментарий', widget=CKEditorUploadingWidget())
+#
+#     class Meta:
+#         model = Company
+#         fields = '__all__'
 
 
 class CompanyAdmin(admin.ModelAdmin):
@@ -55,7 +55,7 @@ class CompanyAdmin(admin.ModelAdmin):
     readonly_fields = ('id', 'date_creation', 'date_update',)
     filter_horizontal = ('fixed',)
     save_on_top = True
-    form = CompanyAdminForm
+    # form = CompanyAdminForm
 
 
 admin.site.register(Contact, ContactAdmin)
