@@ -1,28 +1,18 @@
-# from ckeditor_uploader.widgets import CKEditorUploadingWidget
-from django import forms
 from django.contrib import admin
 from .models import Document, Category
 
 
-# class DocumentAdminForm(forms.ModelForm):
-#     description = forms.CharField(label='Описание', widget=CKEditorUploadingWidget())
-#
-#     class Meta:
-#         model = Document
-#         fields = '__all__'
-
-
 class DocAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'date_update', 'document', 'publications', 'category',)
+    list_display = ('id', 'title', 'date_update', 'document', 'publications',)
     list_display_links = ('id', 'title',)
     search_fields = ('title', 'description',)
     list_filter = ('category',)
     list_editable = ('publications',)
-    fields = ('id', 'title', 'description', 'document', 'category', 'date_creation', 'date_update', 'publications',)
+    fields = ('id', 'title', 'document', 'category', 'username', 'date_creation', 'date_update', 'description',
+              'publications',)
     readonly_fields = ('id', 'date_creation', 'date_update',)
     filter_horizontal = ('username',)
     save_on_top = True
-    # form = DocumentAdminForm
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -35,5 +25,5 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Document, DocAdmin)
 admin.site.register(Category, CategoryAdmin)
 
-admin.site.site_title = 'Уапавление'
-admin.site.site_header = 'Уапавление'
+admin.site.site_title = 'Панель управления'
+admin.site.site_header = 'Панель управления'

@@ -10,10 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
-    'dal',
-    'dal_select2',
-    'dal_queryset_sequence',
-    'django_ckeditor_5'
+    'django_ckeditor_5',
     'phonenumber_field',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,7 +23,8 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'score.apps.ScoreConfig',
     'contract.apps.ContractConfig',
-    'search.apps.SearchConfig',
+    'outgoing.apps.OutgoingConfig',
+    'information.apps.InformationConfig',
 ]
 
 MIDDLEWARE = [
@@ -61,13 +59,13 @@ WSGI_APPLICATION = 'manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'ci55088_doc',
-        # 'USER': 'ci55088_doc',
-        # 'PASSWORD': '6FD3XJsX',
-        # 'HOST': 'ci55088-django-2.tw1.ru',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'manager',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
     }
 }
 

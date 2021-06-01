@@ -28,7 +28,7 @@ class DocList(LoginRequiredMixin, ListView):
     model = Document
     template_name = 'doc/doc_list.html'
     context_object_name = 'doc'
-    allow_empty = False
+    # allow_empty = False
     queryset = Document.objects.select_related('Category')
     paginate_by = 10
 

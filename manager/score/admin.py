@@ -3,12 +3,13 @@ from score.models import Score
 
 
 class ScoreAdmin(admin.ModelAdmin):
-    list_display = ('id', 'number', 'date_creation', 'date_update', 'publications',)
+    list_display = ('id', 'number', 'date_creation', 'date_update', 'publications', 'payment', 'production',)
     filter_horizontal = ('company', 'fixed', 'contract')
     list_display_links = ('id', 'number',)
     search_fields = ('number',)
-    list_editable = ('publications',)
-    fields = ('id', 'number', 'company', 'fixed', 'contract', 'date_creation', 'date_update', 'publications',)
+    list_editable = ('publications', 'payment', 'production',)
+    fields = ('id', 'number', 'company', 'fixed', 'contract', 'date_creation', 'date_update', 'payment', 'production',
+              'publications',)
     readonly_fields = ('id', 'date_creation', 'date_update',)
     save_on_top = True
 

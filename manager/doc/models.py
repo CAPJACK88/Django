@@ -5,11 +5,11 @@ from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Document(models.Model):
-    title = models.CharField(max_length=500, unique=True, verbose_name='Название')
+    title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
+    category = models.ManyToManyField('Category', verbose_name='Категория')
     document = models.FileField(upload_to='files/%Y/%m/%d/', verbose_name='Документ')
-    username = models.ManyToManyField('user.User', blank=True, verbose_name='Имя')
+    username = models.ManyToManyField('user.User', blank=True, verbose_name='Сотрудник')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
@@ -27,7 +27,7 @@ class Document(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=500, unique=True, verbose_name='Название')
+    title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
 
     def get_absolute_url(self):

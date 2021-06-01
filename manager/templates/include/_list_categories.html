@@ -1,0 +1,11 @@
+{% spaceless %}
+    <div class="row">
+        <div class="col-md-3 mb-5">
+            {% for item_category in categories %}
+                <a href="{{ item_category.get_absolute_url }}"
+                   class="list-group-item list-group-item-action">{{ item_category.title }}
+                    <span class="badge bg-info m-2">{{ item_category.cnt }}</span>
+                </a>
+            {% endfor %}
+        </div>
+{% endspaceless %}

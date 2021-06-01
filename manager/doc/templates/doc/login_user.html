@@ -1,11 +1,8 @@
-{% block title %}
-<title>MANAGECOMPANY_AGAT</title>
-{% endblock %}
-{% include 'include/_header.html' %}
 {% spaceless %}
+    {% include 'include/_header.html' %}
     {% load static %}
     {% if request.user.is_authenticated %}
-        <body class="text-center">
+        <body class="body-entrance">
         <main class="form-signin">
             <div class="form-floating">
                 <img class="mb-5" src="{% static 'svg/logo_agat_mini.svg' %}" alt="" width="72" height="57">
@@ -15,21 +12,9 @@
             <a class="btn btn-dark m-5" href="{% url 'logout' %}" role="button">Выход</a>
             <p class="mt-5 mb-3 text-muted">© 2010 - 2021</p>
         </main>
-
-                <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-
         </body>
     {% else %}
-        <body class="text-center">
+        <body class="body-entrance">
         <main class="form-signin">
             <form method="post">
                 {% csrf_token %}

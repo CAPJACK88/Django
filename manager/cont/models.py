@@ -8,18 +8,18 @@ class Contact(models.Model):
     name = models.CharField(max_length=500, verbose_name='Имя')
     surname = models.CharField(max_length=500, verbose_name='Фамилия')
     middle_name = models.CharField(max_length=500, blank=True, verbose_name='Отчество')
-    email = models.EmailField(max_length=500, unique=True, verbose_name='Почта')
+    email = models.EmailField(max_length=255, unique=True, verbose_name='Почта')
     telephone = PhoneNumberField(blank=True, unique=True, verbose_name='Телефон')
     mobile_phone = PhoneNumberField(blank=True, unique=True, verbose_name='Мобильный телефон')
-    url = models.URLField(max_length=200, blank=True, verbose_name='Веб-сайта')
+    url = models.URLField(max_length=255, blank=True, verbose_name='Веб-сайта')
     date_birth = models.DateField(blank=True, verbose_name='Дата рождения')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True, verbose_name='Фото')
     company = models.ManyToManyField('Company', blank=True, verbose_name='Компания')
     position = models.ManyToManyField('user.Position', blank=True, verbose_name='Должность')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    comment = CKEditor5Field(max_length=500, blank=True, verbose_name='Комментарий')
-    publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
+    comment = CKEditor5Field(max_length=1000, blank=True, verbose_name='Комментарий')
+    publications = models.BooleanField(default=True, verbose_name='Опубликовоно')
 
     def __str__(self):
         return self.name
@@ -40,12 +40,12 @@ class Company(models.Model):
     telephone = PhoneNumberField(blank=True, verbose_name='Телефон')
     photo = models.ImageField(upload_to='logo/%Y/%m/%d/', blank=True, verbose_name='Логотип')
     card = models.FileField(upload_to='card/%Y/%m/%d/', blank=True, verbose_name='Карточка')
-    url = models.URLField(max_length=200, blank=True, verbose_name='Веб-сайта')
+    url = models.URLField(max_length=255, blank=True, verbose_name='Веб-сайта')
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Закреплено')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
-    comment = CKEditor5Field(max_length=500, blank=True, verbose_name='Комментарий')
-    publications = models.BooleanField(default=False, verbose_name='Опубликовоно')
+    comment = CKEditor5Field(max_length=1000, blank=True, verbose_name='Комментарий')
+    publications = models.BooleanField(default=True, verbose_name='Опубликовоно')
 
     def __str__(self):
         return self.name
