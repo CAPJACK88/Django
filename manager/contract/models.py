@@ -7,6 +7,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 class Contract(models.Model):
     number = models.CharField(max_length=255, unique=True, verbose_name='Номер')
     company = models.ManyToManyField('cont.Company', blank=True, verbose_name='Компания')
+    company_02 = models.CharField(max_length=255, verbose_name='Компания (Быстрая запись)')
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Закреплено')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')

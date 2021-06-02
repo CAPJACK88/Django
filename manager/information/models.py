@@ -6,10 +6,12 @@ from user.models import User
 
 class Information(models.Model):
     title = models.CharField(max_length=255, unique=True, verbose_name='Название')
-    text = CKEditor5Field(max_length=1000, verbose_name='Текст')
-    category = models.ManyToManyField('Category', verbose_name='Категория')
+    text = CKEditor5Field(max_length=10000, verbose_name='Текст')
+    category = models.ManyToManyField('CategoryInformation', verbose_name='Категория')
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Информатор')
-    document = models.FileField(upload_to='files/%Y/%m/%d/', blank=True, verbose_name='Документ')
+    document = models.FileField(upload_to='files/%Y/%m/%d/', blank=True, verbose_name='Документ №1')
+    document_01 = models.FileField(upload_to='files/%Y/%m/%d/', blank=True, verbose_name='Документ №2')
+    document_02 = models.FileField(upload_to='files/%Y/%m/%d/', blank=True, verbose_name='Документ №3')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     comment = CKEditor5Field(max_length=1000, blank=True, verbose_name='Комментарий')
@@ -27,7 +29,7 @@ class Information(models.Model):
         ordering = ['-date_creation']
 
 
-class Category(models.Model):
+class CategoryInformation(models.Model):
     title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
 

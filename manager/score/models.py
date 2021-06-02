@@ -8,6 +8,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 class Score(models.Model):
     number = models.CharField(max_length=255, unique=True, verbose_name='Номер')
     company = models.ManyToManyField('cont.Company', blank=True, verbose_name='Компания')
+    company_02 = models.CharField(max_length=255, verbose_name='Компания (Быстрая запись)')
     fixed = models.ManyToManyField('user.User', blank=True, verbose_name='Закреплено')
     contract = models.ManyToManyField('contract.Contract', blank=True, verbose_name='Договор')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')

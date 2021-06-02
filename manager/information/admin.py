@@ -1,5 +1,5 @@
 from django.contrib import admin
-from information.models import Information, Category
+from information.models import Information, CategoryInformation
 
 
 class InformationAdmin(admin.ModelAdmin):
@@ -9,13 +9,14 @@ class InformationAdmin(admin.ModelAdmin):
     list_filter = ('category',)
     list_editable = ('publications',)
     fields = (
-        'id', 'title', 'category', 'fixed', 'document', 'date_creation', 'date_update', 'comment', 'publications',)
+        'id', 'title', 'text', 'category', 'fixed', 'document', 'document_01', 'document_02', 'date_creation', 'date_update',
+        'comment', 'publications',)
     readonly_fields = ('id', 'date_creation', 'date_update',)
     filter_horizontal = ('fixed', 'category',)
     save_on_top = True
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryInformationAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'description',)
     list_display_links = ('id', 'title',)
     search_fields = ('title',)
@@ -23,4 +24,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Information, InformationAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(CategoryInformation, CategoryInformationAdmin)

@@ -7,7 +7,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 class Document(models.Model):
     title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
-    category = models.ManyToManyField('Category', verbose_name='Категория')
+    category = models.ManyToManyField('CategoryDoc', verbose_name='Категория')
     document = models.FileField(upload_to='files/%Y/%m/%d/', verbose_name='Документ')
     username = models.ManyToManyField('user.User', blank=True, verbose_name='Сотрудник')
     date_creation = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
@@ -26,12 +26,12 @@ class Document(models.Model):
         ordering = ['date_creation']
 
 
-class Category(models.Model):
+class CategoryDoc(models.Model):
     title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     description = CKEditor5Field(max_length=1000, blank=True, verbose_name='Описание')
 
     def get_absolute_url(self):
-        return reverse_lazy('CategoryList', kwargs={'category_id': self.pk})
+        return reverse_lazy('CategoryList', kwargs={'categorydoc_id': self.pk})
 
     def __str__(self):
         return self.title

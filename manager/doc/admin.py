@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Document, Category
+from .models import Document, CategoryDoc
 
 
 class DocAdmin(admin.ModelAdmin):
@@ -11,11 +11,11 @@ class DocAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'document', 'category', 'username', 'date_creation', 'date_update', 'description',
               'publications',)
     readonly_fields = ('id', 'date_creation', 'date_update',)
-    filter_horizontal = ('username',)
+    filter_horizontal = ('username', 'category',)
     save_on_top = True
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryDocAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'description',)
     list_display_links = ('id', 'title',)
     search_fields = ('title',)
@@ -23,7 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Document, DocAdmin)
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(CategoryDoc, CategoryDocAdmin)
 
 admin.site.site_title = 'Панель управления'
 admin.site.site_header = 'Панель управления'

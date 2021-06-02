@@ -28,9 +28,9 @@ class DocList(LoginRequiredMixin, ListView):
     model = Document
     template_name = 'doc/doc_list.html'
     context_object_name = 'doc'
-    # allow_empty = False
-    queryset = Document.objects.select_related('Category')
-    paginate_by = 10
+    allow_empty = False
+    queryset = Document.objects.select_related('CategoryDoc')
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -40,16 +40,13 @@ class DocList(LoginRequiredMixin, ListView):
         return Document.objects.filter(publications=True)
 
 
-class CategoryList(LoginRequiredMixin, ListView):
-    model = Document
+class CategoryList(ListView):
+    model = CategoryDoc
     template_name = 'doc/doc_list.html'
     context_object_name = 'doc'
-    allow_empty = False
-    queryset = Document.objects.select_related('Category')
-    paginate_by = 10
 
     def get_queryset(self):
-        return Document.objects.filter(category_id=self.kwargs['category_id'], publications=True)
+        return CategoryDoc.objects.filter(pk=self.kwargs['categorydoc_id'])
 
 
 class Search(ListView):
